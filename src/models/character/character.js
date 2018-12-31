@@ -1,18 +1,17 @@
-import Stats from './stats.js';
-import Skill from './skill.js';
+export class Character {
 
-class Character {
-
-    constructor(name, stats){
+    constructor(name){
         this.name = name;
-        this.stats = stats;
+        this.str = 10;
+        this.dex = 10; 
+        this.con = 10;
+        this.int = 10;
+        this.wis = 10;
+        this.cha = 10;
         this.skills = [];
-        this.hp = 0;
-        this.mp = 0;       
-    }
-
-    addStat(name,value){
-        this.stats[name] += value;
+        this.hp = 10;
+        this.mp = 5;
+        this.ac = 10;       
     }
 
     addSkill(skill){
