@@ -1,4 +1,4 @@
-import Character from '../character/character.js'
+import Character from './character.js';
 
 export class Player extends Character {
 

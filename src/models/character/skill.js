@@ -2,7 +2,7 @@ export class Skill {
 
     constructor(name){
         this.name = name;
-        this.rank = 0;
+        this.rank = 1;
     }
 
     addRank(value){
