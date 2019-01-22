@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const SatusBar = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 `;
 
 const StatusItem = styled.h2`
@@ -14,7 +14,9 @@ class PlayerStatus extends Component {
   render() {
     return (
       <SatusBar>
-        <StatusItem>Name: Lorem Ipsum </StatusItem><StatusItem>Health: 10/10 </StatusItem><StatusItem>Mana: 5/5 </StatusItem> <StatusItem>Status: Normal</StatusItem>
+        <StatusItem>Health: 10/10 </StatusItem>
+        <StatusItem>Mana: 5/5 </StatusItem>
+        <StatusItem>Status: Normal</StatusItem>
       </SatusBar>
     );
   }
