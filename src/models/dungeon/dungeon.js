@@ -3,4 +3,15 @@
 
 export class Dungeon {
     
+    constructor(rooms) {
+        this.rooms = rooms;
+    }
+
+    set rooms(rooms) {
+        this.rooms = rooms;
+    }
+    
+    get rooms() {
+        return this.rooms;
+    }
 }
