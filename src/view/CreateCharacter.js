@@ -33,21 +33,21 @@ class CreateCharacter extends Component {
   render() {
     return (
         <GameFrame>
-        <form>
-        <label>
-        <h2>Name your Character</h2>
-        <input onChange={this.handleChange} name='name'/>
-        </label>
-        <h2>Select a class</h2>
-        <select onChange={this.handleChange} name = 'class'>
-            <option value="">Pick A class</option>
-            <option value="Enforcer">Enforcer</option>
-            <option value="Jacker">Jacker</option>
-            <option value="Initiate">Initiate</option>
-        </select>
-        <input type="submit" value="Submit" />
-        </form>
-        You are creating {this.state.name} the {this.state.class}.
+            <form>
+                <label>
+                    <h2>Name your Character</h2>
+                    <input onChange={this.handleChange} name='name'/>
+                </label>
+                <h2>Select a class</h2>
+                <select onChange={this.handleChange} name='class'>
+                    <option value="">Pick A class</option>
+                    <option value="Enforcer">Enforcer</option>
+                    <option value="Jacker">Jacker</option>
+                    <option value="Initiate">Initiate</option>
+                </select>
+                <input type="submit" value="Submit" />
+            </form>
+            You are creating {this.state.name} the {this.state.class}.
         </GameFrame>
         
     );
