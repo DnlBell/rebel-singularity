@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+
 import styled from 'styled-components';
 
 const GameFrame = styled.div`
@@ -10,12 +13,12 @@ const GameFrame = styled.div`
 
 
 class Start extends Component {
+
   render() {
     return (
       <GameFrame>
         <h1>Rebel Singularity</h1>
-        <button>Start</button>
-        <button>Login</button>            
+        <Button component={Link} to='/create/'>Start</Button>
       </GameFrame>
     );
   }

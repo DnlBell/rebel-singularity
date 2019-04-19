@@ -13,6 +13,8 @@ const GameFrame = styled.div`
 
 
 class GameView extends Component {
+
+
   render() {
     return (
       <GameFrame>
