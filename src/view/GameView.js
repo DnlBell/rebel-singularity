@@ -9,7 +9,6 @@ const GameFrame = styled.div`
   padding: 10px;
   flex-direction: column;
   align-items: center;
-
 `;
 
 
