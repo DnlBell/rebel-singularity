@@ -40,6 +40,7 @@ class CreateCharacter extends Component {
                 <option value="Initiate">Initiate</option>
             </Select>      
             <p>You are creating {this.state.name} the {this.state.class}.</p>
+            <Button>Create</Button>
         </GameFrame>
         
     );
