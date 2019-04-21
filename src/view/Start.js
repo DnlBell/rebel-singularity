@@ -8,7 +8,7 @@ const GameFrame = styled.div`
   display: flex;
   padding: 10px;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
 `;
 
 
