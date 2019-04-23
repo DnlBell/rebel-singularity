@@ -17,12 +17,12 @@ const InputGroup = styled.div`
     display: flex;
     flex-direction:column;
     align-items: start;
-`
+`;
 
 const Description = styled.div`
     padding-top: 10px
     height:70px;
-`
+`;
 
 class CreateCharacter extends Component {
     constructor(props) {
@@ -32,7 +32,7 @@ class CreateCharacter extends Component {
             class: '',
             description: ''
         }
-    }
+    };
 
     handleChange = name => event => {
         this.setState({ [name]: event.target.value });
@@ -52,7 +52,7 @@ class CreateCharacter extends Component {
             return "";
         }
 
-    }
+    };
 
 
   render() {
@@ -83,7 +83,7 @@ class CreateCharacter extends Component {
             <Button component={Link} to='/game/'>Create</Button>
         </div>
     );
-  }
+  };
 }
 
 
