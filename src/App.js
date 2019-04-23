@@ -12,7 +12,6 @@ const Foreground = styled.div`
   max-width:600px;
   float: center;
   background-color:white;
-
 `;
 const Background = styled.div`
   display: flex;

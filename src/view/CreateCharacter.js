@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import {Button, Select, Input } from '@material-ui/core';
 import {enforcerDescription, jackerDescription, initiateDescripton} from '../resouce/Text.js';
+import { Link } from 'react-router-dom';
 
 
 
@@ -79,7 +80,7 @@ class CreateCharacter extends Component {
             <Description>
                 {this.getDescription(this.state.class)}
             </Description>
-            <Button>Create</Button>
+            <Button component={Link} to='/game/'>Create</Button>
         </div>
     );
   }
