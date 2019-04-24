@@ -4,7 +4,7 @@ class Inventory extends Component {
   render() {
     return (
       <div>
-        Inventory Tab
+        Inventory screen
       </div>
     );
   }
