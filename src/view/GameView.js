@@ -4,14 +4,26 @@ import { Switch, Route, Link } from "react-router-dom";
 import Play from '../widgets/Play.js';
 import Inventory from '../widgets/Inventory.js';
 import Character from '../widgets/Character.js';
+import Button from '@material-ui/core/Button';
 
 
+const Tab = styled.div`
+  display: flex;
+  align-items: center;
+  flex: 1
+`;
+
+const Tabs = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+`
 const GameFrame = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
+`
 
 class GameView extends Component {
 
@@ -20,20 +32,20 @@ class GameView extends Component {
     const { path } = this.props.match;
 
     return (
-      <div>
+      <GameFrame>
+          <Tabs>
+            <Tab><Button component={Link} to={`${path}`}>Game</Button></Tab>
+            <Tab><Button component={Link} to={`${path}inventory/`}>Inventory</Button></Tab>
+            <Tab><Button component={Link} to={`${path}character/`}>Character</Button></Tab>
+          </Tabs>
         <div>
-          <Link to={`${path}`} className="link">Game</Link>
-          <Link to={`${path}inventory/`} className="link">Inventory</Link>
-          <Link to={`${path}character/`} className="link">Character</Link>
-        </div>
-        <div className="tabs">
           <Switch>
             <Route path={`${path}`} exact component={Play} />
             <Route path={`${path}inventory/`} component={Inventory} />
             <Route path={`${path}character/`} component={Character} />
           </Switch>
         </div>
-      </div>
+      </GameFrame>
     );
   }
 }

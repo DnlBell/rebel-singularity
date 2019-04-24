@@ -21,7 +21,6 @@ const InputGroup = styled.div`
 
 const Description = styled.div`
     padding-top: 10px
-    height:70px;
 `;
 
 class CreateCharacter extends Component {
