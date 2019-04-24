@@ -32,7 +32,6 @@ const Skill = styled.div`
   min-width:110px;
   padding: 8px;
 `;
-
 const Portrait = styled.div`
   width: 150px;
   height: 150px;
@@ -43,15 +42,10 @@ const PortraitFrame = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
-
+`;
 const Wrapper = styled.div`
-
   padding: 8px;
-
-`
-
-
+`;
 class Character extends Component {
   render() {
     return (
