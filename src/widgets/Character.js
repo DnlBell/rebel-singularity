@@ -5,12 +5,17 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 const Block = styled.div`
   display: flex;
   flex-direction: row;
+  position: relative;
+  flex-wrap: wrap;
+  align-items: center;
 `;
 const Summary = styled.div`
   display: flex;
   flex-direction: column;
-  width: 45%;
+  max-width: 45%;
+  min-width: 150px;
   padding: 8px;
+  flex:1;
 `;
 const StatChunk = styled.div`
   display: flex;
@@ -32,12 +37,16 @@ const Skills = styled.div`
   padding: 8px;
 `;
 const Portrait = styled.div`
-  display: flex;
-  height: 220px;
-  width: 40%;
+  width: 150px;
+  height: 150px;
   background-color: blue;
-  padding: 8px;
+  flex:1;
 `;
+const PortraitFrame = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 
 class Character extends Component {
@@ -45,14 +54,16 @@ class Character extends Component {
     return (
       <div>
         <Block>
+        <PortraitFrame>
           <Portrait/>
+        </PortraitFrame>
           <Summary>
             <h2>Name</h2>
               <p>Lvl 1 ClassName</p>
               <p>HP<LinearProgress variant="determinate" value='50'/></p>
               <p>MP<LinearProgress variant="determinate" value='50' /></p>
           </Summary>
-          </Block>
+        </Block>
           <p>Exp<LinearProgress variant="determinate" value='50' /></p>
         <h3>Stats</h3>
         <Block>
