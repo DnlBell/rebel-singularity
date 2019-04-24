@@ -7,7 +7,7 @@ const Block = styled.div`
   flex-direction: row;
   position: relative;
   flex-wrap: wrap;
-  align-items: center;
+  justify-content: space-around;
 `;
 const Summary = styled.div`
   display: flex;
@@ -20,7 +20,8 @@ const Summary = styled.div`
 const StatChunk = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  max-width: 50%;
+  min-width: 150px;
   flex: 1;
   padding: 8px;
 `;
@@ -31,11 +32,7 @@ const Skill = styled.div`
   min-width:110px;
   padding: 8px;
 `;
-const Skills = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 8px;
-`;
+
 const Portrait = styled.div`
   width: 150px;
   height: 150px;
@@ -48,11 +45,17 @@ const PortraitFrame = styled.div`
   align-items: center;
 `
 
+const Wrapper = styled.div`
+
+  padding: 8px;
+
+`
+
 
 class Character extends Component {
   render() {
     return (
-      <div>
+      <Wrapper>
         <Block>
         <PortraitFrame>
           <Portrait/>
@@ -60,11 +63,11 @@ class Character extends Component {
           <Summary>
             <h2>Name</h2>
               <p>Lvl 1 ClassName</p>
+              <p>XP<LinearProgress variant="determinate" value='50' /></p>
               <p>HP<LinearProgress variant="determinate" value='50'/></p>
               <p>MP<LinearProgress variant="determinate" value='50' /></p>
           </Summary>
         </Block>
-          <p>Exp<LinearProgress variant="determinate" value='50' /></p>
         <h3>Stats</h3>
         <Block>
           <StatChunk>
@@ -79,11 +82,11 @@ class Character extends Component {
           </StatChunk>
         </Block>
         <h3>Skills</h3>
-          <Skills>
+          <Block>
             <Skill><p>Perception: 1</p></Skill>
             <Skill><p>Athletics: 1</p></Skill>
-          </Skills>
-      </div>
+          </Block>
+      </Wrapper>
     );
   }
 }
