@@ -15,12 +15,9 @@ const InputRow = styled.div`
 
 const InputGroup = styled.div`
     display: flex;
-    flex-direction:column;
-    align-items: start;
-`;
-
-const Description = styled.div`
-    padding-top: 10px
+    flex-direction: column;
+    align-items: center;
+    text-align:center;
 `;
 
 class CreateCharacter extends Component {
@@ -57,15 +54,15 @@ class CreateCharacter extends Component {
   render() {
     return (
         <div>
-            <h1>Create a character</h1>
             <InputGroup>
+                <h1>Create a character</h1>
                 <InputRow>
                     <label>Name</label>
                     <Input value = {this.state.name}
                         onChange={this.handleChange('name')}></Input>
                 </InputRow>
                 <InputRow>
-                <label>Class </label>
+                <label>Class</label>
                     <Select native
                             value={this.state.class}
                             onChange={this.handleChange('class')}>
@@ -75,11 +72,9 @@ class CreateCharacter extends Component {
                         <option value="Initiate">Initiate</option>
                     </Select>
                 </InputRow>
+                    <p>{this.getDescription(this.state.class)}</p>
+                <Button component={Link} to='/game/'>Create</Button>
             </InputGroup>
-            <Description>
-                {this.getDescription(this.state.class)}
-            </Description>
-            <Button component={Link} to='/game/'>Create</Button>
         </div>
     );
   };
