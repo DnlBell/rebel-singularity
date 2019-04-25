@@ -9,13 +9,11 @@ import Button from '@material-ui/core/Button';
 
 const Tab = styled.div`
   display: flex;
-  align-items: center;
   flex: 1
 `;
 
 const Tabs = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   width: 100%;
 `

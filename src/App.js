@@ -10,7 +10,6 @@ const Foreground = styled.div`
   flex-direction: column;
   width: 95%;
   max-width:600px;
-  float: center;
   background-color:white;
 `;
 const Background = styled.div`
@@ -19,8 +18,6 @@ const Background = styled.div`
   align-items:center;
   background-color:green;
 `;
-
-
 
 class App extends Component {
   render() {

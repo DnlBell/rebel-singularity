@@ -50,13 +50,12 @@ class Character extends Component {
   render() {
     return (
       <Wrapper>
+        <h2>Name</h2><p>Lvl 1 ClassName</p>
         <Block>
         <PortraitFrame>
           <Portrait/>
         </PortraitFrame>
           <Summary>
-            <h2>Name</h2>
-              <p>Lvl 1 ClassName</p>
               <p>XP<LinearProgress variant="determinate" value='50' /></p>
               <p>HP<LinearProgress variant="determinate" value='50'/></p>
               <p>MP<LinearProgress variant="determinate" value='50' /></p>
