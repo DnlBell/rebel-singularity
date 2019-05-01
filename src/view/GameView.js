@@ -5,7 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Play from '../widgets/Play.js';
 import Inventory from '../widgets/Inventory.js';
-import Character from '../widgets/Character.js';
+import Character from '../widgets/CharacterSheet';
 
 const GameFrame = styled.div`
   display: flex;

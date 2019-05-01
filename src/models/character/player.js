@@ -1,9 +1,12 @@
 import Character from './character.js';
 
-export class Player extends Character {
+export default class Player extends Character {
 
-    constructor(name){
+    constructor(name,className){
         super(name);
+        this.className = className;
+        this.level = 1;
+        this.exp = 0;
         this.armor = {};
         this.weapon = {};
         this.capacity = 5;
@@ -16,85 +19,108 @@ export class Player extends Character {
         this.diplomacy = 0;
     }
 
-    get armor() {
-        return this.armor;
+    get className() {
+        return this._className;
     }
 
-    set armor(armor) {
-        this.armor = armor;
+    set className(value) {
+        this._className = value;
+    }
+
+    get level() {
+        return this._level;
+    }
+
+    set level(value) {
+        this._level = value;
+    }
+
+    get exp() {
+        return this._exp;
+    }
+
+    set exp(value) {
+        this._exp = value;
+    }
+
+    get armor() {
+        return this._armor;
+    }
+
+    set armor(value) {
+        this._armor = value;
     }
 
     get weapon() {
-        return this.weapon;
+        return this._weapon;
     }
 
-    set weapon(weapon) {
-        this.weapon = weapon;
+    set weapon(value) {
+        this._weapon = value;
     }
 
     get capacity() {
-        return this.capacity;
+        return this._capacity;
     }
 
-    set capacity(capacity) {
-        this.capacity = capacity;
+    set capacity(value) {
+        this._capacity = value;
     }
 
     get inventory() {
         return this.inventory;
     }
 
-    set inventory(inventory) {
-        this.inventory = inventory;
+    set inventory(value) {
+        this._inventory = value;
     }
 
     get perception() {
-        return this.perception;
+        return this._perception;
     }
 
-    set perception(perception) {
-        this.perception = perception;
+    set perception(value) {
+        this._perception = value;
     }
 
     get knowledge() {
-        return this.knowledge;
+        return this._knowledge;
     }
 
-    set knowledge(knowledge) {
-        this.knowledge = knowledge;
+    set knowledge(value) {
+        this._knowledge = value;
     }
 
     get athletics() {
-        return this.athletics;
+        return this._athletics;
     }
 
-    set athletics(athletics) {
-        this.athletics = athletics;
+    set athletics(value) {
+        this._athletics = value;
     }
 
     get stealth() {
-        return this.stealth;
+        return this._stealth;
     }
 
-    set stealth(stealth) {
-        this.stealth = stealth;
+    set stealth(value) {
+        this._stealth = value;
     }
 
     get cunning() {
-        return this.cunning;
+        return this._cunning;
     }
 
-    set cunning(cunning) {
-        this.cunning = cunning;
+    set cunning(value) {
+        this._cunning = value;
     }
 
     get diplomacy() {
-        return this.diplomacy;
+        return this._diplomacy;
     }
 
-    set diplomacy(diplomacy) {
-        this.diplomacy = diplomacy;
+    set diplomacy(value) {
+        this._diplomacy = value;
     }
-
 
 }

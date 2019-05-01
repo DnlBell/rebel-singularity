@@ -1,4 +1,4 @@
-export class Character {
+export default class Character {
 
     constructor(name){
         this.name = name;
@@ -8,88 +8,107 @@ export class Character {
         this.int = 10;
         this.wis = 10;
         this.cha = 10;
-        this.hp = 10;
-        this.mp = 5;
+        this.maxhp = 10;
+        this.currentHp = 10;
+        this.maxMp = 5;
+        this.currentMp = 5;
         this.ac = 10;
     }
 
     get name() {
-        return this.name;
+        return this._name;
     }
 
-    set name(name) {
-        this.name = name;
+    set name(value) {
+        this._name = value;
     }
 
     get str() {
-        return this.str;
+        return this._str;
     }
 
-    set str(str) {
-        this.str = str;
+    set str(value) {
+        this._str = value;
     }
 
     get dex() {
-        return this.dex;
+        return this._dex;
     }
 
-    set dex(dex) {
-        this.dex = dex;
+    set dex(value) {
+        this._dex = value;
     }
 
     get con() {
-        return this.con;
+        return this._con;
     }
 
-    set con(con) {
-        this.con = con;
+    set con(value) {
+        this._con = value;
     }
 
     get int() {
-        return this.int;
+        return this._int;
     }
 
-    set int(int) {
-        this.int = int;
+    set int(value) {
+        this._int = value;
     }
 
     get wis() {
-        return this.wis;
+        return this._wis;
     }
 
-    set wis(wis) {
-        this.wis = wis;
+    set wis(value) {
+        this._wis = value;
     }
 
     get cha() {
-        return this.cha;
+        return this._cha;
     }
 
-    set cha(cha) {
-        this.cha = cha;
+    set cha(value) {
+        this._cha = value;
     }
 
-    get hp() {
-        return this.hp;
+    get maxhp() {
+        return this._maxhp;
     }
 
-    set hp(hp) {
-        this.hp = hp;
+    set maxhp(value) {
+        this._maxhp = value;
     }
 
+    get currentHp() {
+        return this._currentHp;
+    }
+
+    set currentHp(value) {
+        this._currentHp = value;
+    }
+
+
+    get maxMp() {
+        return this._mp;
+    }
+
+    set maxMp(value) {
+        this._maxMp = value;
+    }
+
+    get currentMp() {
+        return this._currentMp;
+    }
+
+    set currentMp(value) {
+        this._currentMp = value;
+    }
+    
     get ac() {
-        return this.ac;
+        return this._ac;
     }
 
-    set ac(ac) {
-        this.ac = ac;
-    }
-
-    get mp() {
-        return this.mp;
-    }
-
-    set mp(mp) {
-        this.mp = mp;
+    set ac(value) {
+        this._ac = value;
     }
 }

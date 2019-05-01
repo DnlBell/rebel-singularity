@@ -5,7 +5,6 @@ import {enforcerDescription, jackerDescription, initiateDescripton} from '../res
 import { Link } from 'react-router-dom';
 
 
-
 const InputRow = styled.div`
     display: flex;
     flex-direction:column;
@@ -19,6 +18,7 @@ const InputGroup = styled.div`
     align-items: center;
     text-align:center;
 `;
+
 
 class CreateCharacter extends Component {
     constructor(props) {
