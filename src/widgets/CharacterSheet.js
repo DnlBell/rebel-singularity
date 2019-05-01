@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Player from '../models/character/player.js';
+import { connect } from 'react-redux'
 
 const player = new Player("Bob","Enforcer");
 
@@ -98,4 +99,8 @@ class Character extends Component {
   }
 }
 
-export default Character;
+const mapStateToProps = state => ({
+  playerCharacter: state.playerCharacter,
+});
+
+export default connect(mapStateToProps)(Character);

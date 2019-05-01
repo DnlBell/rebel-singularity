@@ -8,7 +8,7 @@ export default class Character {
         this.int = 10;
         this.wis = 10;
         this.cha = 10;
-        this.maxhp = 10;
+        this.maxHp = 10;
         this.currentHp = 10;
         this.maxMp = 5;
         this.currentMp = 5;
@@ -71,11 +71,11 @@ export default class Character {
         this._cha = value;
     }
 
-    get maxhp() {
+    get maxHp() {
         return this._maxhp;
     }
 
-    set maxhp(value) {
+    set maxHp(value) {
         this._maxhp = value;
     }
 

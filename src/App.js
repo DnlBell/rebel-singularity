@@ -4,7 +4,13 @@ import Start from './view/Start.js';
 import CreateCharacter from './view/CreateCharacter.js';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import styled from 'styled-components';
+import { combineReducers, createStore } from 'redux';
+import { Provider } from 'react-redux';
 
+import playerReducer from './reducers/playerReducer.js';
+import dungeonReducer from './reducers/dungeonReducer.js';
+
+//Style elements
 const Foreground = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,18 +30,38 @@ const Background = styled.div`
 
 `;
 
+//App State
+
+const allReducers = combineReducers({
+  playerCharacter: playerReducer,
+  dungeon: dungeonReducer
+})
+
+const store = createStore(
+  allReducers,  
+  {
+    playerCharacter:{player:'empty'},
+    dungeon: {dungeon:'empty'}
+  },
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+console.log(store.getState());
+
 class App extends Component {
   render() {
     return (
-      <Background>
-        <Foreground>
-          <Router>
-            <Route path = "/" exact component={Start} />
-            <Route path = "/create/" component = {CreateCharacter} />
-            <Route path ="/game/" component = {GameView} />
-          </Router>
-        </Foreground>
-      </Background>        
+      <Provider store={store}>
+        <Background>
+          <Foreground>
+            <Router>
+              <Route path = "/" exact component={Start} />
+              <Route path = "/create/" component = {CreateCharacter} />
+              <Route path ="/game/" component = {GameView} />
+            </Router>
+          </Foreground>
+        </Background>
+      </Provider>        
     );
   }
 }

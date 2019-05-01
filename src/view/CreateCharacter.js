@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import {Button, Select, Input } from '@material-ui/core';
 import {enforcerDescription, jackerDescription, initiateDescripton} from '../resouce/Text.js';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
+import { updatePlayer } from '../actions/player-actions.js';
+import Player from '../models/character/player.js';
 
 const InputRow = styled.div`
     display: flex;
@@ -28,7 +30,12 @@ class CreateCharacter extends Component {
             class: '',
             description: ''
         }
+        this.onUpdatePlayer.bind(this);
     };
+
+    onUpdatePlayer() {
+       
+    }
 
     handleChange = name => event => {
         this.setState({ [name]: event.target.value });
@@ -49,7 +56,6 @@ class CreateCharacter extends Component {
         }
 
     };
-
 
   render() {
     return (
@@ -80,5 +86,12 @@ class CreateCharacter extends Component {
   };
 }
 
+const mapStateToProps = state => ({
+    playerCharacter: state.playerCharacter,
+    dungeon: state.dungeon
+});
 
-export default CreateCharacter;
+const mapActionsToProps = {
+    onUpdatePlayer: updatePlayer
+}
+export default connect(mapStateToProps, mapActionsToProps)(CreateCharacter);

@@ -76,7 +76,7 @@ export default class Player extends Character {
     }
 
     get perception() {
-        return this.perception;
+        return this._perception;
     }
 
     set perception(value) {
@@ -84,7 +84,7 @@ export default class Player extends Character {
     }
 
     get knowledge() {
-        return this.knowledge;
+        return this._knowledge;
     }
 
     set knowledge(value) {
