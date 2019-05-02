@@ -1,10 +1,10 @@
-export const UPDATE_PLAYER = 'player:updatePlayer';
+export const UPDATE_PLAYER = 'playerCharacter:updatePlayer';
 
 export function updatePlayer(newPlayer) {
     return {
         type: UPDATE_PLAYER,
         payload: {
-            user: newPlayer
+            player: newPlayer
         }
     }
 }

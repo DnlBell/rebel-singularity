@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
+
 import playerReducer from './reducers/playerReducer.js';
 import dungeonReducer from './reducers/dungeonReducer.js';
 
@@ -54,7 +55,7 @@ class App extends Component {
       <Provider store={store}>
         <Background>
           <Foreground>
-            <Router>
+            <Router >
               <Route path = "/" exact component={Start} />
               <Route path = "/create/" component = {CreateCharacter} />
               <Route path ="/game/" component = {GameView} />

@@ -4,7 +4,7 @@ export default function playerReducer(state = {}, { type, payload }) {
 
     switch (type) {
       case UPDATE_PLAYER:
-        return payload.user;
+        return payload.player;
       default:
         return state;
     }
