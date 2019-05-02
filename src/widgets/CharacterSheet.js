@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Player from '../models/character/player.js';
 import { connect } from 'react-redux'
 
-const player = new Player("Bob","Enforcer");
 
 const Block = styled.div`
   display: flex;
@@ -57,42 +55,50 @@ const Wrapper = styled.div`
 `;
 
 class Character extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      player : this.props.player
+    }
+  }
+
   render() {
     return (
       <Wrapper>
-        <h2>{player.name}</h2><p>Lvl {player.level} {player.className}</p>
+        <h2>{this.state.player.name}</h2><p>Lvl {this.state.player.level} {this.state.player.className}</p>
         <Block>
         <PortraitFrame>
           <Portrait/>
         </PortraitFrame>
           <Summary>
-              <p>HP<LinearProgress variant="determinate" value={(player.currentHp/player.maxhp)*100}/></p>
-              <p>MP<LinearProgress variant="determinate" value={(player.currentMp/player.maxMp)*100} /></p>
-              <p>XP<LinearProgress variant="determinate" value={player.exp} /></p>
-              <p>Armor: {player.ac}</p>
+              <p>HP<LinearProgress variant="determinate" value={(this.state.player.currentHp/this.state.player.maxhp)*100}/></p>
+              <p>MP<LinearProgress variant="determinate" value={(this.state.player.currentMp/this.state.player.maxMp)*100} /></p>
+              <p>XP<LinearProgress variant="determinate" value={this.state.player.exp} /></p>
+              <p>Armor: {this.state.player.ac}</p>
           </Summary>
         </Block>
         <h3>Stats</h3>
         <Block>
           <StatChunk>
-            <p>Str: {player.str} (+{(player.str - 10)/2})</p>
-            <p>Int: {player.int} (+{(player.int - 10)/2})</p>
-            <p>Dex: {player.dex} (+{(player.dex - 10)/2})</p>
+            <p>Str: {this.state.player.str} (+{(this.state.player.str - 10)/2})</p>
+            <p>Int: {this.state.player.int} (+{(this.state.player.int - 10)/2})</p>
+            <p>Dex: {this.state.player.dex} (+{(this.state.player.dex - 10)/2})</p>
           </StatChunk>
           <StatChunk>
-            <p>Wis: {player.wis} (+{(player.wis - 10)/2})</p>
-            <p>Con: {player.con} (+{(player.con - 10)/2})</p>
-            <p>Cha: {player.cha} (+{(player.cha - 10)/2})</p>
+            <p>Wis: {this.state.player.wis} (+{(this.state.player.wis - 10)/2})</p>
+            <p>Con: {this.state.player.con} (+{(this.state.player.con - 10)/2})</p>
+            <p>Cha: {this.state.player.cha} (+{(this.state.player.cha - 10)/2})</p>
           </StatChunk>
         </Block>
         <h3>Skills</h3>
           <SkillBlock>
-            <Skill><p>Perception: {player.perception}</p></Skill>
-            <Skill><p>Knowledge: {player.knowledge}</p></Skill>
-            <Skill><p>Athletics: {player.athletics}</p></Skill>
-            <Skill><p>Stealth: {player.stealth}</p></Skill>
-            <Skill><p>Cunning: {player.cunning}</p></Skill>
-            <Skill><p>Diplomacy: {player.diplomacy}</p></Skill>
+            <Skill><p>Perception: {this.state.player.perception}</p></Skill>
+            <Skill><p>Knowledge: {this.state.player.knowledge}</p></Skill>
+            <Skill><p>Athletics: {this.state.player.athletics}</p></Skill>
+            <Skill><p>Stealth: {this.state.player.stealth}</p></Skill>
+            <Skill><p>Cunning: {this.state.player.cunning}</p></Skill>
+            <Skill><p>Diplomacy: {this.state.player.diplomacy}</p></Skill>
           </SkillBlock>
       </Wrapper>
     );
@@ -100,7 +106,7 @@ class Character extends Component {
 }
 
 const mapStateToProps = state => ({
-  playerCharacter: state.playerCharacter,
+  player: state.playerCharacter.player
 });
 
 export default connect(mapStateToProps)(Character);
