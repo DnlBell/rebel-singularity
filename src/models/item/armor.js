@@ -1,7 +1,7 @@
 
 import Item from './item.js'
 
-export class Armor extends Item {
+export default class Armor extends Item {
 
     constructor(name,value,description,armorClass) {
         super(name,value,description);

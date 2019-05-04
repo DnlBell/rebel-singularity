@@ -2,7 +2,7 @@
 //TODO weapon type, die, bonus
 import Item from './item.js'
 
-export class Weapon extends Item {
+export default class Weapon extends Item {
 
     constructor(name,description,value,damageDie,dieAmmount,bonus) {
         super(name,description,value);
