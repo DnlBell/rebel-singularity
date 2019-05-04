@@ -5,6 +5,7 @@ import {enforcerDescription, jackerDescription, initiateDescripton} from '../res
 import { connect } from 'react-redux';
 import { updatePlayer } from '../actions/player-actions.js';
 import Player from '../models/character/player.js';
+import {createEnforcer, createJacker, createInitiate} from '../resouce/playerTemplates.js';
 import { Redirect } from 'react-router-dom';
 
 const InputRow = styled.div`
@@ -32,45 +33,11 @@ class CreateCharacter extends Component {
             toPlay: false
         }
         this.onUpdatePlayer.bind(this);
-        this.createEnforcer.bind(this);
-        this.createJacker.bind(this);
-        this.createInitiate.bind(this);
     };
 
     onUpdatePlayer() {
         this.props.onUpdatePlayer({player:this.state.newPlayer});
     }
-
-    createEnforcer() {
-       const enforcer = new Player(this.state.name,this.state.class);
-       enforcer.str = 14;
-       enforcer.con = 14;
-       enforcer.dex = 12;
-       enforcer.maxHp = 12;
-       enforcer.currentHp = 12;
-       this.state.newPlayer = enforcer;
-    };
-
-    createJacker() {
-        const jacker = new Player(this.state.name,this.state.class);
-        jacker.dex = 14;
-        jacker.int = 12;
-        jacker.con = 12;
-        jacker.cha = 12;
-        jacker.maxHp = 9;
-        jacker.currentHp = 9;
-        this.state.newPlayer = jacker;
-    };
-
-    createInitiate() {
-        const initiate = new Player(this.state.name,this.state.class);
-        initiate.int = 14;
-        initiate.wis = 14;
-        initiate.cha = 12;
-        initiate.maxHp = 8;
-        initiate.currentHp = 9;
-        this.state.newPlayer = initiate;
-    };
 
     handleChange = name => event => {
         this.setState({ [name]: event.target.value });
@@ -97,16 +64,16 @@ class CreateCharacter extends Component {
         if(className !== '' &&  characterName !== '' && characterName.length <= 32){
             switch(this.state.class){
                 case 'Enforcer':
-                    this.createEnforcer();
+                    this.state.newPlayer = createEnforcer(this.state.name,this.state.class);
                     break;
                 case 'Jacker':
-                    this.createJacker();
+                    this.state.newPlayer = createJacker(this.state.name,this.state.class);
                     break;
                 case 'Initiate':
-                    this.createInitiate();
+                    this.state.newPlayer = createInitiate(this.state.name,this.state.class);
                     break;
                 default:
-                    this.createEnforcer();
+                    this.state.newplayer = createEnforcer(this.state.name,this.state.class);
                     break;
             }
             this.onUpdatePlayer();

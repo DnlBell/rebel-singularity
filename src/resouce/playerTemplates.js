@@ -1,0 +1,32 @@
+import Player from '../models/character/player.js';
+
+export const createEnforcer = (name,className) => {
+    const enforcer = new Player(name,className);
+    enforcer.str = 14;
+    enforcer.con = 14;
+    enforcer.dex = 12;
+    enforcer.maxHp = 12;
+    enforcer.currentHp = 12;
+    return(enforcer);
+ };
+
+ export const createJacker = (name,classname) => {
+     const jacker = new Player(name,classname);
+     jacker.dex = 14;
+     jacker.int = 12;
+     jacker.con = 12;
+     jacker.cha = 12;
+     jacker.maxHp = 9;
+     jacker.currentHp = 9;
+     return(jacker);
+ };
+
+ export const createInitiate = (name,className) => {
+     const initiate = new Player(name,className);
+     initiate.int = 14;
+     initiate.wis = 14;
+     initiate.cha = 12;
+     initiate.maxHp = 8;
+     initiate.currentHp = 9;
+     return(initiate);
+ };

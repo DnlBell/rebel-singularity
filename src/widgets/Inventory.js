@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux'
 
 const Portrait = styled.div`
   width: 150px;
@@ -44,10 +45,18 @@ const Wrapper = styled.div`
 `;
 
 class Inventory extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      player : this.props.player
+    }
+  }
+
   render() {
     return (
       <Wrapper>
-        <h2>Weapon</h2>
+        <h2>Weapon {this.state.player.name}</h2>
         <Block>
         <PortraitFrame>
           <Portrait/>
@@ -89,4 +98,8 @@ class Inventory extends Component {
   }
 }
 
-export default Inventory;
+const mapStateToProps = state => ({
+  player: state.playerCharacter.player
+});
+
+export default connect(mapStateToProps)(Inventory);
