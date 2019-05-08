@@ -12,19 +12,19 @@ const PlayFrame = styled.div`
 
 class Play extends Component {
 
-  state = {
-    turn: 0
+  constructor(props) {
+    super(props);
+    this.state = {
+      turn: 0,
+      actions: []
+    }
   }
 
   render() {
-    const actions = [];
-
-    for (var i = 0; i < this.state.turn; i += 1) {
-      actions.push(<Action key={i} turn={i} />)
-    }
+    
     return (
       <PlayFrame>
-        <Log children = {actions} />
+        <Log children = {this.state.actions} />
         <Button onClick = {this.takeAction}>press me</Button>
       </PlayFrame>
     );
@@ -32,7 +32,8 @@ class Play extends Component {
 
   takeAction = () => {
     this.setState({
-      turn: this.state.turn + 1
+      turn: this.state.turn + 1,
+      actions:[...this.state.actions,<Action key={this.state.turn} turn={this.state.turn}/>]
     });
   } 
 }
