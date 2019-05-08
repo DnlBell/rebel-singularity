@@ -56,7 +56,7 @@ class Inventory extends Component {
   render() {
     return (
       <Wrapper>
-        <h2>Weapon {this.state.player.name}</h2>
+        <h2>Weapon</h2>
         <Block>
         <PortraitFrame>
           <Portrait>{this.state.player.weapon.name}</Portrait>

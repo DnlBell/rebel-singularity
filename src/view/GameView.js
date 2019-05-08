@@ -6,6 +6,8 @@ import Tab from '@material-ui/core/Tab';
 import Play from '../widgets/Play.js';
 import Inventory from '../widgets/Inventory.js';
 import Character from '../widgets/CharacterSheet';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 
 const GameFrame = styled.div`
   display: flex;
@@ -15,11 +17,23 @@ const GameFrame = styled.div`
 
 class GameView extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      player : this.props.player
+    }
+  }
+
   render() {
 
     const { path } = this.props.match;
 
+    if(this.state.player === "empty"){
+          return <Redirect to='/create/' />    
+    }
+
     return (
+      
       <GameFrame>
           <Tabs
             indicatorColor="primary"
@@ -42,4 +56,8 @@ class GameView extends Component {
   }
 }
 
-export default GameView;
+const mapStateToProps = state => ({
+  player: state.playerCharacter.player
+});
+
+export default connect(mapStateToProps)(GameView);
