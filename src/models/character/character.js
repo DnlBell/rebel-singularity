@@ -87,7 +87,6 @@ export default class Character {
         this._currentHp = value;
     }
 
-
     get maxMp() {
         return this._mp;
     }

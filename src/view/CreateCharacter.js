@@ -86,7 +86,7 @@ class CreateCharacter extends Component {
         return false;
     }
 
-  render() {
+    render() {
 
     if (this.state.toPlay === true) {
         return <Redirect to='/game/' />

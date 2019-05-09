@@ -3,7 +3,6 @@ import {Button} from '@material-ui/core';
 import styled from 'styled-components';
 import Log from './Log';
 
-
 const PlayFrame = styled.div`
   display: flex;
   flex-direction: column;
