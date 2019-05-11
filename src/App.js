@@ -17,18 +17,18 @@ const Foreground = styled.div`
   flex-direction: column;
   width: 95%;
   max-width:600px;
-  margin-top:8px;
-  margin-bottom:8px;
+  min-height:95%; 
   background-color:white;
-  min-height: 800px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 5px;
+  position: absolute;
+  left: 50%
+  transform: translate(-50%)
 `;
 const Background = styled.div`
   display: flex;
   flex-direction: column;
   align-items:center;
-
 `;
 
 //App State

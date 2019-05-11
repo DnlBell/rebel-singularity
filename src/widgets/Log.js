@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const LogBox = styled.div`
-  height : 250px;
+  height : 400px;
   width : 95%;
   overflow: auto;
   justify-content: left;

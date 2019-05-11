@@ -72,7 +72,7 @@ class Character extends Component {
         </PortraitFrame>
           <Summary>
               <p>HP<LinearProgress variant="determinate" value={(this.state.player.currentHp/this.state.player.maxhp)*100}/></p>
-              <p>MP<LinearProgress variant="determinate" value={(this.state.player.currentMp/this.state.player.maxMp)*100} /></p>
+              <p>MP<LinearProgress variant="determinate" value={(this.state.player.currentMp/this.state.player.maxMp)*100}/></p>
               <p>XP<LinearProgress variant="determinate" value={this.state.player.exp} /></p>
               <p>Armor: {10 + ((this.state.player.dex - 10)/2) + this.state.player.armor.armorClass}</p>
           </Summary>
