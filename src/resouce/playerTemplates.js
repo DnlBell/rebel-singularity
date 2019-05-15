@@ -9,6 +9,8 @@ export const createEnforcer = (name,className) => {
     enforcer.dex = 12;
     enforcer.maxHp = 12;
     enforcer.currentHp = 12;
+    enforcer.maxMp = 4;
+    enforcer.currentMp = 4;
     enforcer.armor = leatherJacket();
     enforcer.weapon = steelBat();
     return(enforcer);
@@ -22,6 +24,8 @@ export const createEnforcer = (name,className) => {
     jacker.cha = 12;
     jacker.maxHp = 9;
     jacker.currentHp = 9;
+    jacker.maxMp = 6;
+    jacker.currentMp = 6;
     jacker.armor = leatherJacket();
     jacker.weapon = steelBat();
     return(jacker);
@@ -34,6 +38,8 @@ export const createEnforcer = (name,className) => {
     initiate.cha = 12;
     initiate.maxHp = 8;
     initiate.currentHp = 8;
+    initiate.maxMp = 10;
+    initiate.currentMp = 10;
     initiate.armor = leatherJacket();
     initiate.weapon = steelBat();
     return(initiate);

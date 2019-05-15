@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Button, LinearProgress, Grid} from '@material-ui/core';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { updateLog } from '../actions/log-actions';
+import { incrementTurn } from '../actions/turn-actions';
 import Log from './Log';
 
 const PlayFrame = styled.div`
@@ -18,7 +21,6 @@ const StatBox = styled.div`
 const Stat = styled.div`
   width:45%;
   max-width:250px;
-
 `
 const ButtonGrid = styled(Grid)`
   flex-direction:row;
@@ -40,19 +42,31 @@ class Play extends Component {
     super(props);
     this.takeAction = this.takeAction.bind(this);
     this.state = {
-      turn: 0,
-      actions: []
+      player: this.props.player,
     }
+    this.onUpdateLog.bind(this);
+    this.onIncrementTurn.bind(this);
   }
 
-  render() {
-    
+  onUpdateLog(action) {
+    this.props.onUpdateLog(action);
+  }
+
+  onIncrementTurn() {
+    this.props.onIncrementTurn();
+  }
+
+  render() {  
     return (
       <PlayFrame>
-        <Log children = {this.state.actions} />
+        <Log/>
         <StatBox>
-          <Stat>HP(100%)<LinearProgress variant="determinate" value={100}/></Stat>
-          <Stat>MP(100%)<LinearProgress variant="determinate" value={100}/></Stat>
+          <Stat>HP({this.state.player.currentHp}/{this.state.player.maxHp})
+            <LinearProgress variant="determinate" value={(this.state.player.currentHp/this.state.player.maxHp)*100}/>
+          </Stat>
+          <Stat>MP({this.state.player.currentMp}/{this.state.player._maxMp})
+            <LinearProgress variant="determinate" value={(this.state.player.currentMp/this.state.player.maxMp)*100}/>
+          </Stat>
         </StatBox>
         <ButtonGrid>
           <ActionButton onClick = {() => this.takeAction("Attack")}>Attack</ActionButton>
@@ -64,32 +78,36 @@ class Play extends Component {
   }
 
   takeAction = (type) => {
-
-    let action = null;
-
     if (type === "Attack") {
-      action = <Attack key={this.state.turn} turn={this.state.turn}/>;
+      this.onUpdateLog("This is an attack on turn " + this.props.turn);
+      this.onIncrementTurn();
     }
     else if (type === "Skill") {
-      action = <Skill key={this.state.turn} turn={this.state.turn}/>;
+      this.onUpdateLog("This is a skill use on turn " + this.props.turn);
+      this.onIncrementTurn();
     }
     else if (type === "Spell") {
-      action = <Spell key={this.state.turn} turn={this.state.turn}/>;
+      this.onUpdateLog("This is a spell cast on " + this.props.turn);
+      this.onIncrementTurn();
     }
     else {
-      action = <Action key={this.state.turn} turn={this.state.turn}/>;
+      this.onUpdateLog("Nothing happens on turn " + this.props.turn);
+      this.onIncrementTurn();
     }
-
-    this.setState({
-      turn: this.state.turn + 1,
-      actions:[...this.state.actions,action]
-    });
   } 
 }
 
-const Action = props => <div>{"This is the action for turn " + props.turn}</div>
-const Attack = props => <div>{"This is an attack on turn " + props.turn}</div>
-const Skill = props => <div>{"This is a skill use on turn " + props.turn}</div>
-const Spell = props => <div>{"This is a spell cast on turn " + props.turn}</div>
+const mapActionsToProps = {
+  onUpdateLog : updateLog,
+  onIncrementTurn: incrementTurn
+}
 
-export default Play;
+const mapStateToProps = state => ({
+  player: state.playerCharacter.player,
+  turn: state.turn
+});
+
+export default connect(mapStateToProps,mapActionsToProps)(Play);
+
+
+

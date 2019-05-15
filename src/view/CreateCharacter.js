@@ -4,7 +4,6 @@ import {Button, Select, Input } from '@material-ui/core';
 import {enforcerDescription, jackerDescription, initiateDescripton} from '../resouce/Text.js';
 import { connect } from 'react-redux';
 import { updatePlayer } from '../actions/player-actions.js';
-import Player from '../models/character/player.js';
 import {createEnforcer, createJacker, createInitiate} from '../resouce/playerTemplates.js';
 import { Redirect } from 'react-router-dom';
 

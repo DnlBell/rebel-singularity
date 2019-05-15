@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 const LogBox = styled.div`
   height : 400px;
@@ -8,12 +9,12 @@ const LogBox = styled.div`
   justify-content: left;
 `
 
-export default class Log extends Component {
+class Log extends Component {
 
     render(){
       return(
         <LogBox>
-          {this.props.children}
+          {this.props.log.map(txt => <div>{txt}</div>)}
           <div style={{ float:"left", clear: "both" }}
                   ref={(el) => { this.messagesEnd = el; }}>
           </div>
@@ -33,3 +34,9 @@ export default class Log extends Component {
       this.scrollToBottom();
     }
 }
+
+const mapStateToProps = state => ({
+  log: state.log
+});
+
+export default connect(mapStateToProps)(Log)

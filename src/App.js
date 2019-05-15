@@ -7,9 +7,10 @@ import styled from 'styled-components';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-
 import playerReducer from './reducers/playerReducer.js';
 import dungeonReducer from './reducers/dungeonReducer.js';
+import logReducer from './reducers/logReducer.js';
+import turnReducer from './reducers/turnReducer.js';
 
 //Style elements
 const Foreground = styled.div`
@@ -35,14 +36,18 @@ const Background = styled.div`
 
 const allReducers = combineReducers({
   playerCharacter: playerReducer,
-  dungeon: dungeonReducer
+  dungeon: dungeonReducer,
+  log: logReducer,
+  turn: turnReducer
 })
 
 const store = createStore(
   allReducers,  
   {
     playerCharacter:{player:'empty'},
-    dungeon: {dungeon:'empty'}
+    dungeon: {dungeon:'empty'},
+    log: ["welcome"],
+    turn: 0
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

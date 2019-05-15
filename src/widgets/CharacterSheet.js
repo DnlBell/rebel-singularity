@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 const Block = styled.div`
   display: flex;

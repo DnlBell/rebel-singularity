@@ -1,4 +1,4 @@
-import {UPDATE_PLAYER} from '../actions/player-actions.js'
+import {UPDATE_PLAYER} from '../actions/player-actions.js';
 
 export default function playerReducer(state = {}, { type, payload }) {
 
