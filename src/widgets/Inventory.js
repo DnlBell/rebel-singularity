@@ -63,8 +63,7 @@ class Inventory extends Component {
         </PortraitFrame>
         <Summary>
           <p>{this.state.player.weapon.name}</p>
-          <p>Damage: d{this.state.player.weapon.damageDie}</p>
-          <p>Damage Type</p>
+          <p>Damage: {this.state.player.weapon.dieAmmount}d{this.state.player.weapon.damageDie}</p>
         </Summary>
         </Block>
         <h2>Armor</h2>
@@ -74,8 +73,8 @@ class Inventory extends Component {
         </PortraitFrame>
         <Summary>
           <p>{this.state.player.armor.name}</p>
-          <p>{this.state.player.armor.bonus}</p>
-          <p>Armor Type</p>
+          <p>ArmorClass: +{this.state.player.armor.armorClass}</p>
+      
         </Summary>
         </Block>
         <h2>Inventory</h2>

@@ -11,7 +11,6 @@ const PlayFrame = styled.div`
 `
 
 class Play extends Component {
-
   render() {  
     return (
       <PlayFrame>
@@ -21,10 +20,6 @@ class Play extends Component {
       </PlayFrame>
     );
   }
-
 }
 
 export default Play;
-
-
-

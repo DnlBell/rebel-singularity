@@ -23,7 +23,7 @@ class Log extends Component {
     }
   
     scrollToBottom = () => {
-      this.messagesEnd.scrollIntoView({ behavior: "smooth", block: 'nearest', inline: 'start' });
+      this.messagesEnd.scrollIntoView({  block: 'nearest', inline: 'start' });
     }
     
     componentDidMount() {

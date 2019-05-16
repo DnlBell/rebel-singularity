@@ -51,20 +51,20 @@ class ActionMenu extends Component {
 
     takeAction = (type) => {
         if (type === "Attack") {
-          this.onUpdateLog("This is an attack on turn " + this.props.turn);
-          this.onIncrementTurn();
+            this.onIncrementTurn();
+            this.onUpdateLog("This is an attack on turn " + this.props.turn);
         }
         else if (type === "Skill") {
-          this.onUpdateLog("This is a skill use on turn " + this.props.turn);
-          this.onIncrementTurn();
+            this.onIncrementTurn();
+            this.onUpdateLog("This is a skill use on turn " + this.props.turn);
         }
         else if (type === "Spell") {
-          this.onUpdateLog("This is a spell cast on " + this.props.turn);
-          this.onIncrementTurn();
+            this.onIncrementTurn();
+            this.onUpdateLog("This is a spell cast on " + this.props.turn);
         }
         else {
-          this.onUpdateLog("Nothing happens on turn " + this.props.turn);
-          this.onIncrementTurn();
+            this.onIncrementTurn();
+            this.onUpdateLog("Nothing happens on turn " + this.props.turn);
         }
     } 
 }
