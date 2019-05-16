@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 import ActionMenu from './ActionMenu.js';
 import Log from './Log.js';
 import StatBox from './StatBox';
@@ -12,13 +11,6 @@ const PlayFrame = styled.div`
 `
 
 class Play extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      player: this.props.player,
-    }
-  }
 
   render() {  
     return (
@@ -32,11 +24,7 @@ class Play extends Component {
 
 }
 
-const mapStateToProps = state => ({
-  player: state.playerCharacter.player
-});
-
-export default connect(mapStateToProps)(Play);
+export default Play;
 
 
 
