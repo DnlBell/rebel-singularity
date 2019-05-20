@@ -28,15 +28,14 @@ const StatChunk = styled.div`
 `;
 const SkillBlock =styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction:row;
   flex-wrap: wrap;
+  justify-content: space-around;
 `
 const Skill = styled.div`
-  display: flex;
-  width: 50%;
-  flex: 1;
   min-width:110px;
-  padding: 8px;
+  display: flex;
+  margin-right:5%;
 `;
 const Portrait = styled.div`
   width: 150px;
@@ -68,7 +67,7 @@ class Character extends Component {
         <h2>{this.state.player.name}</h2><p>Lvl {this.state.player.level} {this.state.player.className}</p>
         <Block>
         <PortraitFrame>
-          <Portrait/>
+          <Portrait> Character Portrait </Portrait>
         </PortraitFrame>
           <Summary>
               <p>HP<LinearProgress variant="determinate" value={(this.state.player.currentHp/this.state.player.maxhp)*100}/></p>
@@ -91,14 +90,18 @@ class Character extends Component {
           </StatChunk>
         </Block>
         <h3>Skills</h3>
-          <SkillBlock>
-            <Skill><p>Perception: {this.state.player.perception}</p></Skill>
-            <Skill><p>Knowledge: {this.state.player.knowledge}</p></Skill>
-            <Skill><p>Athletics: {this.state.player.athletics}</p></Skill>
-            <Skill><p>Stealth: {this.state.player.stealth}</p></Skill>
-            <Skill><p>Cunning: {this.state.player.cunning}</p></Skill>
-            <Skill><p>Diplomacy: {this.state.player.diplomacy}</p></Skill>
-          </SkillBlock>
+          <Block>
+            <StatChunk>
+              <p>Perception: {this.state.player.perception + ((this.state.player.wis - 10)/2)}</p>
+              <p>Knowledge: {this.state.player.knowledge + ((this.state.player.int - 10)/2)}</p>
+              <p>Athletics: {this.state.player.athletics + ((this.state.player.str - 10)/2)}</p>
+            </StatChunk>
+            <StatChunk>
+              <p>Stealth: {this.state.player.stealth + ((this.state.player.dex - 10)/2)}</p>
+              <p>Cunning: {this.state.player.cunning + ((this.state.player.dex - 10)/2)}</p>
+              <p>Diplomacy: {this.state.player.diplomacy + ((this.state.player.cha - 10)/2)}</p>
+            </StatChunk>
+            </Block>
       </Wrapper>
     );
   }

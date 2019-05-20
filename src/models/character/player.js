@@ -68,7 +68,7 @@ export default class Player extends Character {
     }
 
     get inventory() {
-        return this.inventory;
+        return this._inventory;
     }
 
     set inventory(value) {

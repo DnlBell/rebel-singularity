@@ -1,6 +1,7 @@
 import Player from '../models/character/player.js';
 import {steelBat} from '../resouce/weaponTemplates.js';
-import {leatherJacket} from '../resouce/armorTemplates.js'
+import {leatherJacket} from '../resouce/armorTemplates.js';
+import {blueSquare} from '../resouce/itemTemplates'
 
 export const createEnforcer = (name,className) => {
     const enforcer = new Player(name,className);
@@ -13,6 +14,7 @@ export const createEnforcer = (name,className) => {
     enforcer.currentMp = 4;
     enforcer.armor = leatherJacket();
     enforcer.weapon = steelBat();
+    enforcer.inventory.push(blueSquare());
     return(enforcer);
  };
 
@@ -28,6 +30,7 @@ export const createEnforcer = (name,className) => {
     jacker.currentMp = 6;
     jacker.armor = leatherJacket();
     jacker.weapon = steelBat();
+    jacker.inventory.push(blueSquare());
     return(jacker);
  };
 
@@ -42,5 +45,6 @@ export const createEnforcer = (name,className) => {
     initiate.currentMp = 10;
     initiate.armor = leatherJacket();
     initiate.weapon = steelBat();
+    initiate.inventory.push(blueSquare());
     return(initiate);
  };

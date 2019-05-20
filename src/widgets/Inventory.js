@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import ItemIcon from './ItemIcon';
 
 const Portrait = styled.div`
   width: 150px;
@@ -74,23 +75,15 @@ class Inventory extends Component {
         <Summary>
           <p>{this.state.player.armor.name}</p>
           <p>ArmorClass: +{this.state.player.armor.armorClass}</p>
-      
         </Summary>
         </Block>
         <h2>Inventory</h2>
         <Block>
-          <PortraitFrame>
-            <ItemPic/>
-          </PortraitFrame>
-          <PortraitFrame>
-            <ItemPic/>
-          </PortraitFrame>
-          <PortraitFrame>
-            <ItemPic/>
-          </PortraitFrame>
-          <PortraitFrame>
-            <ItemPic/>
-          </PortraitFrame>
+          <ItemIcon/>
+          <ItemIcon/>
+          <ItemIcon/>
+          <ItemIcon/>
+          <ItemIcon/>
         </Block>
       </Wrapper>
     );
