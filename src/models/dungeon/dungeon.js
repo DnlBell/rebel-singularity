@@ -1,17 +1,18 @@
 //the dungeon object stores a 2d array of rooms that serves 
 //as the dungeon map.   
 
-export class Dungeon {
+export default class Dungeon {
     
     constructor(rooms) {
-        this.rooms = rooms;
+        this.map = rooms;
+        this.inCombat = false;
     }
 
     set rooms(rooms) {
-        this.rooms = rooms;
+        this._rooms = rooms;
     }
     
     get rooms() {
-        return this.rooms;
+        return this._rooms;
     }
 }

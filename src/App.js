@@ -11,6 +11,8 @@ import playerReducer from './reducers/playerReducer.js';
 import dungeonReducer from './reducers/dungeonReducer.js';
 import logReducer from './reducers/logReducer.js';
 import turnReducer from './reducers/turnReducer.js';
+import {gameStartText} from './resouce/Text.js';
+import {testDungeon} from './resouce/dungeonTemplate';
 
 //Style elements
 const Foreground = styled.div`
@@ -45,8 +47,8 @@ const store = createStore(
   allReducers,  
   {
     playerCharacter:{player:'empty'},
-    dungeon: {dungeon:'empty'},
-    log: ["welcome"],
+    dungeon: {dungeon:testDungeon},
+    log: [gameStartText],
     turn: 0
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

@@ -24,7 +24,10 @@ class ActionMenu extends Component {
     constructor(props){
         super(props)
         this.state = {
-            player : this.props.player 
+            player : this.props.player,
+            choices : ["Attack","Spell","Skill","Wait"],
+            action : "",
+            target : {}
         };
         this.takeAction = this.takeAction.bind(this);
         this.onUpdateLog.bind(this);
@@ -40,17 +43,25 @@ class ActionMenu extends Component {
     }
 
     render() {
+        const choiceButtons = [];
+        for (let i = 0; i < this.state.choices.length; i++) {
+            let newButton = 
+                <ActionButton 
+                    onClick = {() => this.takeAction(this.state.choices[i])}>{this.state.choices[i]}
+                </ActionButton>
+            choiceButtons.push(newButton);
+        }
+
         return(
         <ButtonGrid>
-            <ActionButton onClick = {() => this.takeAction("Attack")}>Attack</ActionButton>
-            <ActionButton onClick = {() => this.takeAction("Spell")}>Spell</ActionButton>
-            <ActionButton onClick = {() => this.takeAction("Skill")}>Skill</ActionButton>
+            {choiceButtons}
         </ButtonGrid>
         );   
     }
 
     takeAction = (type) => {
         if (type === "Attack") {
+            
             this.onIncrementTurn();
             this.onUpdateLog("This is an attack on turn " + this.props.turn);
         }

@@ -3,6 +3,13 @@
 //inspectable items. Every room will have at least one door, 
 //connecting it to the rest of a dungeon.
 
-export class Room {
+export default class Room {
+
+    constructor(){
+        this.doors = [];
+        this.enemies = [];
+        this.containers = [];
+        this.description = "";
+    }
 
 }
