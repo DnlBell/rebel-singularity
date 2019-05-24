@@ -1,5 +1,9 @@
 import Dungeon from '../models/dungeon/dungeon.js';
 import {testRoom} from './roomTemplates.js'
 
-const rooms = [testRoom];
-export const testDungeon = new Dungeon(rooms);
+
+export const testDungeon = () =>{
+    const testDungeon = new Dungeon();
+    testDungeon.map.push(testRoom());
+    return (testDungeon);
+}

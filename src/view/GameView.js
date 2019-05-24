@@ -33,7 +33,6 @@ class GameView extends Component {
     }
 
     return (
-      
       <GameFrame>
           <Tabs
             indicatorColor="primary"

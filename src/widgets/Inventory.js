@@ -10,14 +10,6 @@ const Portrait = styled.div`
   flex:1;
 `;
 
-const ItemPic = styled.div`
-  width: 75px;
-  height: 75px;
-  background-color: blue;
-  flex:1;
-  margin:8px;
-`;
-
 const PortraitFrame = styled.div`
   display: flex;
   justify-content: center;

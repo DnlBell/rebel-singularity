@@ -26,17 +26,6 @@ const StatChunk = styled.div`
   flex: 1;
   padding: 8px;
 `;
-const SkillBlock =styled.div`
-  display: flex;
-  flex-direction:row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`
-const Skill = styled.div`
-  min-width:110px;
-  display: flex;
-  margin-right:5%;
-`;
 const Portrait = styled.div`
   width: 150px;
   height: 150px;

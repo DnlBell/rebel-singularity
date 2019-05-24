@@ -3,8 +3,8 @@
 
 export default class Dungeon {
     
-    constructor(rooms) {
-        this.map = rooms;
+    constructor() {
+        this.map = [];
         this.inCombat = false;
     }
 

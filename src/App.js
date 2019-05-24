@@ -47,7 +47,7 @@ const store = createStore(
   allReducers,  
   {
     playerCharacter:{player:'empty'},
-    dungeon: {dungeon:testDungeon},
+    dungeon: {dungeon:testDungeon()},
     log: [gameStartText],
     turn: 0
   },

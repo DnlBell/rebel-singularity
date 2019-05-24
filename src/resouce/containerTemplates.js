@@ -4,5 +4,6 @@ import {blueSquare} from './itemTemplates.js';
 export const testContainer = () =>{
     const testContainer = new container();
     testContainer.name = "Test Pod";
-    testContainer.items.push(blueSquare);
+    testContainer.items.push(blueSquare());
+    return testContainer;
 } 
