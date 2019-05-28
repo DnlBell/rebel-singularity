@@ -11,28 +11,4 @@ export default class Weapon extends Item {
         this.bonus = bonus;
     }
 
-    set damageDie(value) {
-        this._damageDie = value;
-    }
-
-    get damageDie() {
-        return this._damageDie;
-    }
-
-    set dieAmmount(value) {
-        this._dieAmmount = value;
-    }
-
-    get dieAmmount() {
-        return this._dieAmmount;
-    }
-    
-    set bonus(value) {
-        this._bonus = value;
-    }
-
-    get bonus() {
-        return this._bonus;
-    }
-
 }

@@ -29,7 +29,7 @@ class StatBox extends Component {
           <Stat>HP({this.state.player.currentHp}/{this.state.player.maxHp})
             <LinearProgress variant="determinate" value={(this.state.player.currentHp/this.state.player.maxHp)*100}/>
           </Stat>
-          <Stat>MP({this.state.player.currentMp}/{this.state.player._maxMp})
+          <Stat>MP({this.state.player.currentMp}/{this.state.player.maxMp})
             <LinearProgress variant="determinate" value={(this.state.player.currentMp/this.state.player.maxMp)*100}/>
           </Stat>
         </StatFrame>
@@ -39,7 +39,7 @@ class StatBox extends Component {
 }
 
 const mapStateToProps = state => ({
-    player: state.playerCharacter.player
+    player: state.player
   });
 
 export default connect(mapStateToProps)(StatBox);

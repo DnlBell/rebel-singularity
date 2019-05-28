@@ -9,7 +9,7 @@ class ItemList extends Component {
 }
 
 const mapStateToProps = state => ({
-    inventory: state.playerCharacter.player.inventory
+    inventory: state.player.inventory
   });
   
   export default connect(mapStateToProps)(ItemList);

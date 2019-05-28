@@ -6,13 +6,7 @@ export default class Dungeon {
     constructor() {
         this.map = [];
         this.inCombat = false;
+        this.currentPosition = 0;
     }
 
-    set rooms(rooms) {
-        this._rooms = rooms;
-    }
-    
-    get rooms() {
-        return this._rooms;
-    }
 }

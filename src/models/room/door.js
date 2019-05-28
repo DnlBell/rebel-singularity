@@ -1,7 +1,7 @@
 export default class Door {
 
     constructor(){
-        this.exit = {}
+        this.exit = 0;
         this.locked = false;
         this.difficulty = 0;
         this.name = "";

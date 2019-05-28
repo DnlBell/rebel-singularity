@@ -37,7 +37,7 @@ const Background = styled.div`
 //App State
 
 const allReducers = combineReducers({
-  playerCharacter: playerReducer,
+  player: playerReducer,
   dungeon: dungeonReducer,
   log: logReducer,
   turn: turnReducer
@@ -46,8 +46,8 @@ const allReducers = combineReducers({
 const store = createStore(
   allReducers,  
   {
-    playerCharacter:{player:'empty'},
-    dungeon: {dungeon:testDungeon()},
+    player:'empty',
+    dungeon: testDungeon(),
     log: [gameStartText],
     turn: 0
   },

@@ -56,7 +56,7 @@ class GameView extends Component {
 }
 
 const mapStateToProps = state => ({
-  player: state.playerCharacter.player
+  player: state.player
 });
 
 export default connect(mapStateToProps)(GameView);

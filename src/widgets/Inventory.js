@@ -83,7 +83,7 @@ class Inventory extends Component {
 }
 
 const mapStateToProps = state => ({
-  player: state.playerCharacter.player
+  player: state.player
 });
 
 export default connect(mapStateToProps)(Inventory);

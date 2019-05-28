@@ -8,10 +8,4 @@ export default class Armor extends Item {
         this.armorClass = armorClass;
     }
 
-    set armorClass(value){
-        this._armorClass = value;
-    }
-    get armorClass() {
-        return this._armorClass;
-    }
 }

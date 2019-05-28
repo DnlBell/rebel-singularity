@@ -7,7 +7,7 @@ export default class Room {
 
     constructor(){
         this.doors = [];
-        this.enemies = [];
+        this.characters = [];
         this.containers = [];
         this.description = "";
     }
