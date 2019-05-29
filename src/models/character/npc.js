@@ -6,6 +6,7 @@ export default class Npc extends Character {
         super(name);
         this.isHostile = false;
         this.description = "";
+        this.hidden = false;
     }
 
 }

@@ -5,7 +5,10 @@ export default class Container {
     constructor(){
         this.items = [];
         this.locked = false;
-        this.difficulty = 0;
+        this.hidden = false;
+        this.open = false;
+        this.lock = 0;
+        this.hide = 0;
         this.name = "";
     }
     

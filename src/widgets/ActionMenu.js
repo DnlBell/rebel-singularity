@@ -27,16 +27,19 @@ class ActionMenu extends Component {
             player : this.props.player,
             choices : this.checkAvalibleChoices(),
             targets : [],
-            skills : [],
             targetMenuToggle : false
         };
         this.takeAction = this.takeAction.bind(this);
         this.onUpdateLog.bind(this);
         this.onIncrementTurn.bind(this);
         this.checkAvalibleChoices.bind(this);
+        this.checkAvalibleInspectables.bind(this);
+        this.checkAvalibleSearchable.bind(this);
         this.checkAvalibleEnemies.bind(this);
         this.checkAvalibleSkills.bind(this);
         this.checkAvalibleOpenable.bind(this);
+        this.checkAvalibleTakeable.bind(this);
+        this.checkAvalibleInspectables.bind(this);
         this.checkAvalibleAthleticable.bind(this);
         this.checkIfStealthable.bind(this);
         this.checkForUnlockable.bind(this);
@@ -56,6 +59,10 @@ class ActionMenu extends Component {
             if(this.checkAvalibleSkills().length > 0){
                 currentChoices.push("Skill");
             }
+            if(this.checkAvalibleTakeable().length > 0){
+                currentChoices.push("Take");
+            }
+
         return currentChoices;
     }
 
@@ -75,8 +82,14 @@ class ActionMenu extends Component {
     checkAvalibleSkills() {
         let avalibleSkills = [];
 
-        if (this.checkForUnlockable().length>0){
-            avalibleSkills.push("Cunning");
+        if(this.checkForUnlockable().length>0){
+            avalibleSkills.push({name:"Cunning"});
+        }
+        if(this.checkForTalkable().length>0){
+            avalibleSkills.push({name:"Diplomacy"});
+        }
+        if(this.checkAvalibleInspectables().length>0){
+            avalibleSkills.push({name:"Inspect"})
         }
 
         return avalibleSkills;
@@ -89,13 +102,12 @@ class ActionMenu extends Component {
         const containers = room.containers;
 
         for(let i = 0; i < doors.length; i++){
-            if (!doors[i].locked){
+            if (!doors[i].locked && !doors[i].hidden){
                 avalibleTargets.push(new target(i,doors[i].name,"DOOR"))
             }
         }
-
         for(let i = 0; i < containers.length; i++){
-            if (!containers[i].locked){
+            if (!containers[i].locked && !containers[i].hidden){
                 avalibleTargets.push(new target(i,containers[i].name,"CONTAINER"))
             }
         }
@@ -103,6 +115,48 @@ class ActionMenu extends Component {
         return avalibleTargets;        
     }
 
+    checkAvalibleTakeable() {
+        let avalibleTargets = [];
+        const room = this.props.dungeon.map[this.props.dungeon.currentPosition];
+        const containers = room.containers;
+  
+        for(let i = 0; i < containers.length; i++){
+            if(!containers[i].locked && !containers[i].hidden && containers[i].open){
+                avalibleTargets.push(new target(i,containers[i].name,"CONTAINER"));
+            }
+        }
+
+        return avalibleTargets;
+    }
+
+    checkAvalibleInspectables() {
+        let avalibleTargets = [];
+        const room = this.props.dungeon.map[this.props.dungeon.currentPosition];
+        const doors = room.doors;
+        const containers = room.containers;
+        const characters = room.characters;
+
+        for(let i = 0; i < doors.length; i++){
+            if (!doors[i].locked && !doors[i].hidden){
+                avalibleTargets.push(new target(i,doors[i].name,"DOOR"))
+            }
+        }
+        for(let i = 0; i < containers.length; i++){
+            if (!containers[i].locked && !containers[i].hidden){
+                avalibleTargets.push(new target(i,containers[i].name,"CONTAINER"))
+            }
+        }
+        for(let i = 0; i < characters.length; i++){
+            if (!characters[i].hidden){
+                avalibleTargets.push(new target(i,characters[i].name,"CHARACTER"))
+            }
+        }
+
+        return avalibleTargets;     
+    }
+    checkAvalibleSearchable() {
+
+    }
     checkAvalibleKnowable() {
 
     }
@@ -123,13 +177,13 @@ class ActionMenu extends Component {
         const containers = room.containers;
 
         for(let i = 0; i < doors.length; i++){
-            if (doors[i].locked){
+            if (doors[i].locked && !doors[i].hidden){
                 avalibleTargets.push(new target(i,doors[i].name,"DOOR"))
             }
         }
 
         for(let i = 0; i < containers.length; i++){
-            if (containers[i].locked){
+            if (containers[i].locked && !containers[i].hidden){
                 avalibleTargets.push(new target(i,containers[i].name,"CONTAINER"))
             }
         }
@@ -167,18 +221,16 @@ class ActionMenu extends Component {
     render() {
 
         const choiceButtons = [];
-
       
-        if(!this.state.targetMenuToggle && !this.state.skillMenuToggle){
+        if(!this.state.targetMenuToggle){
             for (let i = 0; i < this.state.choices.length; i++) {
                 let newButton = 
-                    <ActionButton 
-                            onClick = {() => this.takeAction(this.state.choices[i])}> 
+                    <ActionButton onClick = {() => this.takeAction(this.state.choices[i])}> 
                         {this.state.choices[i]}
                     </ActionButton>
                 choiceButtons.push(newButton);
             }
-        } else if(this.state.targetMenuToggle) {
+        } else {
             for (let i = 0; i < this.state.targets.length; i++) {
                 let newButton = 
                     <ActionButton> 
@@ -186,19 +238,13 @@ class ActionMenu extends Component {
                     </ActionButton>
                 choiceButtons.push(newButton);
             }
-        } else if(this.state.skillMenuToggle) {
-            for (let i = 0; i < this.state.skills.length; i++) {
-                let newButton = 
-                    <ActionButton> 
-                        {this.state.skills[i]}
-                    </ActionButton>
-                choiceButtons.push(newButton);
-            }
+            choiceButtons.push(<ActionButton onClick={() => this.setState({targetMenuToggle : false})}>Back</ActionButton>)
         }
 
         return(
         <ButtonGrid>
             {choiceButtons}
+           
         </ButtonGrid>
         );   
     }
@@ -212,8 +258,8 @@ class ActionMenu extends Component {
         }
         else if (type === "Skill") {
             this.setState({
-                skills : this.checkAvalibleSkills(),
-                skillMenuToggle : true
+                targets : this.checkAvalibleSkills(),
+                targetMenuToggle : true
             })
         }
         else if (type === "Spell") {
@@ -225,7 +271,13 @@ class ActionMenu extends Component {
                 targets : this.checkAvalibleOpenable(),
                 targetMenuToggle : true
              })
-            }
+        }
+        else if (type === "Take") {
+            this.setState({
+               targets : this.checkAvalibleTakeable(),
+               targetMenuToggle : true
+            })
+       }
         else {
             this.onIncrementTurn();
             this.onUpdateLog("Nothing happens on turn " + this.props.turn);
@@ -243,7 +295,8 @@ const mapActionsToProps = {
 const mapStateToProps = state => ({
     player: state.player,
     turn: state.turn,
-    dungeon: state.dungeon
+    dungeon: state.dungeon,
+    log: state.log
 });
 export default connect(mapStateToProps,mapActionsToProps)(ActionMenu)
 
