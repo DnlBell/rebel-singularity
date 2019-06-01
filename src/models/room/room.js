@@ -9,7 +9,7 @@ export default class Room {
         this.doors = [];
         this.characters = [];
         this.containers = [];
-        this.description = "";
+        this.generalDescription = "...";
     }
 
 }

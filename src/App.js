@@ -1,3 +1,4 @@
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import GameView from './view/GameView.js';
 import Start from './view/Start.js';

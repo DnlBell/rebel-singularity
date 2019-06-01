@@ -30,6 +30,7 @@ class ActionMenu extends Component {
             targetMenuToggle : false
         };
         this.takeAction = this.takeAction.bind(this);
+        this.resolveAction = this.resolveAction.bind(this);
         this.onUpdateLog.bind(this);
         this.onIncrementTurn.bind(this);
         this.checkAvalibleChoices.bind(this);
@@ -45,6 +46,7 @@ class ActionMenu extends Component {
         this.checkForUnlockable.bind(this);
         this.checkForTalkable.bind(this);
         this.checkAvalibleSpells.bind(this);
+        this.getRoomDescription.bind(this);
     }
 
     checkAvalibleChoices() {
@@ -62,7 +64,6 @@ class ActionMenu extends Component {
             if(this.checkAvalibleTakeable().length > 0){
                 currentChoices.push("Take");
             }
-
         return currentChoices;
     }
 
@@ -72,10 +73,9 @@ class ActionMenu extends Component {
 
         for(let i = 0; i<characters.length;i++){
             if (characters[i].isHostile){
-                avalibleTargets.push(new target(i,characters[i].name,"CHARACTER"));
+                avalibleTargets.push(new target(i,characters[i].name,"CHARACTER","ATTACK"));
             }
         }
-
         return avalibleTargets;
     }
 
@@ -83,10 +83,10 @@ class ActionMenu extends Component {
         let avalibleSkills = [];
 
         if(this.checkForUnlockable().length>0){
-            avalibleSkills.push({name:"Cunning"});
+            avalibleSkills.push({name:"Unlock"});
         }
         if(this.checkForTalkable().length>0){
-            avalibleSkills.push({name:"Diplomacy"});
+            avalibleSkills.push({name:"Talk"});
         }
         if(this.checkAvalibleInspectables().length>0){
             avalibleSkills.push({name:"Inspect"})
@@ -103,12 +103,12 @@ class ActionMenu extends Component {
 
         for(let i = 0; i < doors.length; i++){
             if (!doors[i].locked && !doors[i].hidden){
-                avalibleTargets.push(new target(i,doors[i].name,"DOOR"))
+                avalibleTargets.push(new target(i,doors[i].name,"DOOR","OPEN"))
             }
         }
         for(let i = 0; i < containers.length; i++){
             if (!containers[i].locked && !containers[i].hidden){
-                avalibleTargets.push(new target(i,containers[i].name,"CONTAINER"))
+                avalibleTargets.push(new target(i,containers[i].name,"CONTAINER","OPEN"))
             }
         }
 
@@ -122,7 +122,7 @@ class ActionMenu extends Component {
   
         for(let i = 0; i < containers.length; i++){
             if(!containers[i].locked && !containers[i].hidden && containers[i].open){
-                avalibleTargets.push(new target(i,containers[i].name,"CONTAINER"));
+                avalibleTargets.push(new target(i,containers[i].name,"CONTAINER","TAKE"));
             }
         }
 
@@ -138,17 +138,17 @@ class ActionMenu extends Component {
 
         for(let i = 0; i < doors.length; i++){
             if (!doors[i].locked && !doors[i].hidden){
-                avalibleTargets.push(new target(i,doors[i].name,"DOOR"))
+                avalibleTargets.push(new target(i,doors[i].name,"DOOR","INSPECT"))
             }
         }
         for(let i = 0; i < containers.length; i++){
             if (!containers[i].locked && !containers[i].hidden){
-                avalibleTargets.push(new target(i,containers[i].name,"CONTAINER"))
+                avalibleTargets.push(new target(i,containers[i].name,"CONTAINER","INSPECT"))
             }
         }
         for(let i = 0; i < characters.length; i++){
             if (!characters[i].hidden){
-                avalibleTargets.push(new target(i,characters[i].name,"CHARACTER"))
+                avalibleTargets.push(new target(i,characters[i].name,"CHARACTER","INSPECT"))
             }
         }
 
@@ -178,13 +178,13 @@ class ActionMenu extends Component {
 
         for(let i = 0; i < doors.length; i++){
             if (doors[i].locked && !doors[i].hidden){
-                avalibleTargets.push(new target(i,doors[i].name,"DOOR"))
+                avalibleTargets.push(new target(i,doors[i].name,"DOOR","UNLOCK"))
             }
         }
 
         for(let i = 0; i < containers.length; i++){
             if (containers[i].locked && !containers[i].hidden){
-                avalibleTargets.push(new target(i,containers[i].name,"CONTAINER"))
+                avalibleTargets.push(new target(i,containers[i].name,"CONTAINER","UNLOCK"))
             }
         }
 
@@ -199,7 +199,7 @@ class ActionMenu extends Component {
 
         for(let i = 0; i<characters.length;i++){
             if (!characters[i].isHostile){
-                avalibleTargets.push(new target(i,characters[i].name,"CHARACTER"));
+                avalibleTargets.push(new target(i,characters[i].name,"CHARACTER","TALK"));
             }
         }
 
@@ -208,6 +208,92 @@ class ActionMenu extends Component {
 
     checkAvalibleSpells() {
 
+
+
+    }
+
+    getRoomDescription() {
+
+        const describableDoors = [];
+        const describableContainers = [];
+        const describableCharacters = [];
+        const room = this.props.dungeon.map[this.props.dungeon.currentPosition];
+        const doors = room.doors;
+        const containers = room.containers;
+        const characters = room.characters;
+
+        let roomDescription = "The room you are in is " + room.generalDescription;
+
+        for(let i = 0; i < doors.length; i++){
+            if (!doors[i].hidden){
+                describableDoors.push(new target(i,doors[i].name,"DOOR","DESCRIBE"));
+            }
+        }
+
+        for(let i = 0; i < containers.length; i++){
+            if (!containers[i].hidden){
+                describableContainers.push(new target(i,containers[i].name,"CONTAINER","DESCRIBE"));
+            }
+        }
+
+        for(let i = 0; i < characters.length; i++){
+            if (!characters[i].hidden){
+                describableCharacters.push(new target(i,characters[i].name,"CHARACTER","DESCRIBE"));
+            }
+        }
+
+        if (describableDoors.length < 1){
+            roomDescription += " There are no doors. ";
+        } else if (describableDoors.length === 1) {
+            roomDescription += " On 1 of the walls there is a " + describableDoors[0].name + ".";
+        } else {
+            roomDescription += " There are " + describableDoors.length + " doors. ";
+            for(let i = 0; i < describableDoors.length; ++i ) {
+                if (i === 0){
+                    roomDescription += "A " + describableDoors[i].name;
+                } else if ( i === describableDoors.length-1){
+                    roomDescription += " and a " + describableDoors[i].name;
+                } else {
+                    roomDescription += ", a " + describableDoors[i].name;
+                }
+                roomDescription += ".";
+            }
+        }
+
+        if (describableContainers.length === 1) {
+            roomDescription += " You see a " + describableContainers[0].name + ". " ;
+        } else {
+            roomDescription += " There are " + describableContainers.length + " containers that you see. ";
+            for(let i = 0; i < describableContainers.length; ++i ) {
+                if (i === 0){
+                    roomDescription += "A " + describableContainers[i].name;
+                } else if ( i === describableContainers.length-1){
+                    roomDescription += " and a " + describableContainers[i].name;
+                } else {
+                    roomDescription += ", a " + describableContainers[i].name;
+                }
+                roomDescription += ".";
+            }
+        }
+
+        if (describableCharacters.length === 1) {
+            roomDescription += " You see a " + describableCharacters[0].name + ". " ;
+        } else {
+            roomDescription += " There are " + describableCharacters.length + " characters that you see. ";
+            for(let i = 0; i < describableCharacters.length; ++i ) {
+                if (i === 0){
+                    roomDescription += "A " + describableCharacters[i].name;
+                } else if ( i === describableCharacters.length-1){
+                    roomDescription += " and a " + describableCharacters[i].name;
+                } else {
+                    roomDescription += ", a " + describableCharacters[i].name;
+                }
+            }
+            roomDescription += ".";
+        }
+
+        
+        return(roomDescription);
     }
 
     onUpdateLog(action) {
@@ -221,6 +307,11 @@ class ActionMenu extends Component {
     render() {
 
         const choiceButtons = [];
+        const thisTurn = this.props.turn;
+        if (thisTurn === 0){
+            this.onUpdateLog(this.getRoomDescription());
+            this.onIncrementTurn();
+        }
       
         if(!this.state.targetMenuToggle){
             for (let i = 0; i < this.state.choices.length; i++) {
@@ -233,7 +324,7 @@ class ActionMenu extends Component {
         } else {
             for (let i = 0; i < this.state.targets.length; i++) {
                 let newButton = 
-                    <ActionButton> 
+                    <ActionButton onClick = {() => this.takeAction(this.state.targets[i])}> 
                         {this.state.targets[i].name}
                     </ActionButton>
                 choiceButtons.push(newButton);
@@ -244,47 +335,98 @@ class ActionMenu extends Component {
         return(
         <ButtonGrid>
             {choiceButtons}
-           
         </ButtonGrid>
         );   
     }
 
-    takeAction = (type) => {
-        if (type === "Attack") {
+    takeAction = (select) => {
+        if (select === "Attack") {
             this.setState({
                 targets : this.checkAvalibleEnemies(),
                 targetMenuToggle : true
              })
         }
-        else if (type === "Skill") {
+        else if (select === "Skill") {
             this.setState({
                 targets : this.checkAvalibleSkills(),
                 targetMenuToggle : true
             })
         }
-        else if (type === "Spell") {
-            this.onIncrementTurn();
-            this.onUpdateLog("This is a spell cast on " + this.props.turn);
-        }
-        else if (type === "Open") {
+        else if (select === "Open") {
              this.setState({
                 targets : this.checkAvalibleOpenable(),
                 targetMenuToggle : true
              })
         }
-        else if (type === "Take") {
+        else if (select === "Take") {
             this.setState({
                targets : this.checkAvalibleTakeable(),
                targetMenuToggle : true
             })
        }
+       else if (select === "Inspect") {
+            this.setState({
+                targets : this.checkAvalibleInspectables(),
+                targetMenuToggle : true
+            })
+        }
+        else if (select === "Unlock") {
+            this.setState({
+                targets : this.checkForUnlockable(),
+                targetMenuToggle : true
+            })
+        }
+        else if (select === "Talk") {
+            this.setState({
+                targets : this.checkForTalkable(),
+                targetMenuToggle : true
+            })
+        }
         else {
-            this.onIncrementTurn();
-            this.onUpdateLog("Nothing happens on turn " + this.props.turn);
+            this.resolveAction(select);
+        }
+    }
+
+    resolveAction = (target) =>{
+
+        switch(target.choice){
+            case "ATTACK":
+                this.onIncrementTurn();
+                this.onUpdateLog("You Attack " + target.name + " on turn " + this.props.turn + ".");
+                this.setState({targetMenuToggle: false});
+                break;
+            case "OPEN":
+                this.onIncrementTurn();
+                this.onUpdateLog("You open " + target.name + " on turn " + this.props.turn + ".");
+                this.setState({targetMenuToggle: false});
+                break;
+            case "TAKE":
+                this.onIncrementTurn();
+                this.onUpdateLog("You take " + target.name + " on turn " + this.props.turn + ".");
+                this.setState({targetMenuToggle: false});
+                break;
+            case "INSPECT":
+                this.onIncrementTurn();
+                this.onUpdateLog("You inspect " + target.name + " on turn " + this.props.turn + ".");
+                this.setState({targetMenuToggle: false});
+                break;
+            case "UNLOCK":
+                this.onIncrementTurn();
+                this.onUpdateLog("You unlock " + target.name + " on turn " + this.props.turn + ".");
+                this.setState({targetMenuToggle: false});
+                break;
+            case "TALK":
+                this.onIncrementTurn();
+                this.onUpdateLog("You say hello to " + target.name + " on turn " + this.props.turn + ".");
+                this.setState({targetMenuToggle: false});
+                break;
+            case "DESCRIBE":
+                break;
+            default:
+
         }
     }
     
-
 }
 
 const mapActionsToProps = {
@@ -302,9 +444,10 @@ export default connect(mapStateToProps,mapActionsToProps)(ActionMenu)
 
 class target {
 
-    constructor(id,name,type){
+    constructor(id,name,type,choice){
         this.id = id;
         this.name = name;
         this.type = type;
+        this.choice = choice;
     }
 }
