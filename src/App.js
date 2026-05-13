@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import GameView from './view/GameView.js';
 import Start from './view/Start.js';
 import CreateCharacter from './view/CreateCharacter.js';
+import Login from './view/Login.js';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import styled from 'styled-components';
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 
 import playerReducer from './reducers/playerReducer.js';
@@ -14,6 +15,9 @@ import logReducer from './reducers/logReducer.js';
 import turnReducer from './reducers/turnReducer.js';
 import {gameStartText} from './resouce/Text.js';
 import {testDungeon} from './resouce/dungeonTemplate';
+import { AuthProvider } from './auth/AuthContext.js';
+import ProtectedRoute from './components/ProtectedRoute.js';
+import savePersistenceMiddleware from './middleware/savePersistenceMiddleware.js';
 
 //Style elements
 const Foreground = styled.div`
@@ -44,6 +48,8 @@ const allReducers = combineReducers({
   turn: turnReducer
 })
 
+const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
 const store = createStore(
   allReducers,  
   {
@@ -52,7 +58,7 @@ const store = createStore(
     log: [gameStartText],
     turn: 0
   },
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(savePersistenceMiddleware))
 );
 
 console.log(store.getState());
@@ -61,15 +67,18 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Background>
-          <Foreground>
-            <Router >
-              <Route path = "/" exact component={Start} />
-              <Route path = "/create/" component = {CreateCharacter} />
-              <Route path ="/game/" component = {GameView} />
-            </Router>
-          </Foreground>
-        </Background>
+        <AuthProvider>
+          <Background>
+            <Foreground>
+              <Router >
+                <Route path = "/" exact component={Start} />
+                <Route path = "/login/" component={Login} />
+                <ProtectedRoute path = "/create/" component = {CreateCharacter} />
+                <ProtectedRoute path ="/game/" component = {GameView} />
+              </Router>
+            </Foreground>
+          </Background>
+        </AuthProvider>
       </Provider>        
     );
   }
